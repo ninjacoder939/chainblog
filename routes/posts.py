@@ -20,6 +20,22 @@ from utils.sanitizer import sanitize_content
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
 
+import re
+
+def sanitize_content(content: str) -> str:
+    # remove emails
+    content = re.sub(r"\b[\w.-]+@[\w.-]+\.\w{2,4}\b", "[removed]", content)
+    
+    # remove phone numbers (simple pattern)
+    content = re.sub(r"\b\d{10,15}\b", "[removed]", content)
+    
+    # remove URLs
+    content = re.sub(r"https?://\S+|www\.\S+", "[removed]", content)
+    
+    return content
+
+
+
 @router.post("/submit")
 async def submit_post(
     title: str = Form(...), 
