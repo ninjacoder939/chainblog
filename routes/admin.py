@@ -3,7 +3,7 @@ from models import Post
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 
-ADMIN_TOKEN = "your_secret_token_here"
+ADMIN_TOKEN = "af398a03b71934775fd0c1e898b59a7b67a0c549e7c6eb38"
 
 def check_admin(token: str):
     if token != ADMIN_TOKEN:
