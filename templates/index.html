@@ -2,17 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Secure Blog</title>
+    <title>My BlockChain Blog</title>
 </head>
 <body>
-    <h1>Welcome to My Secure Blog</h1>
-    <p>Here are the latest posts:</p>
+    <h1>Welcome BlockChain Blog</h1>
+
+    <h2>Submit a New Post</h2>
+    <form action="/posts/submit" method="post">
+        <label>Title:</label><br>
+        <input type="text" name="title" required><br><br>
+
+        <label>Content:</label><br>
+        <textarea name="content" rows="5" cols="50" required></textarea><br><br>
+
+        <label>Author Name:</label><br>
+        <input type="text" name="author" required><br><br>
+
+        <button type="submit">Post</button>
+    </form>
+
+    <h2>Latest Posts</h2>
     <ul>
         {% for post in posts %}
         <li>
-            <a href="/posts/{{ post.id }}">{{ post.title }}</a> - {{ post.author }}
+            <strong>{{ post.title }}</strong> by {{ post.author }}<br>
+            {{ post.content[:10000] }}...
         </li>
         {% endfor %}
     </ul>
 </body>
 </html>
+
