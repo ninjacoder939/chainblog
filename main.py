@@ -8,7 +8,7 @@ app = FastAPI(title="Secure Blog API")
 
 @app.on_event("startup")
 async def app_init():
-    client = motor.motor_asyncio.AsyncIOMotorClient("mongodb://localhost:27017")
+    client = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://ckulthe56_db_user:N3RmF60r9xaBtrBU@cluster0.tfyywqo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     await init_beanie(database=client.blog_db, document_models=[Post])
 
 app.include_router(posts.router)
